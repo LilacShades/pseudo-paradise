@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#Script By Haridula
+
 if [ ! -f /tmp/cover-url.txt ]; then
     touch /tmp/cover-url.txt
 fi
