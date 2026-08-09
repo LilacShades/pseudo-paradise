@@ -1,0 +1,22 @@
+# __  __       _
+# |  \/  | __ _| | _____
+# | |\/| |/ _` | |/ / _ \
+# | |  | | (_| |   < (_) |
+# |_|  |_|\__,_|_|\_\___/
+
+max-history=500
+font=Terminus 9
+text-alignment=right
+icon-location=left
+border-size=1
+border-radius=0
+background-color=#252525
+text-color=#E8E3E3
+border-color=#424242
+max-icon-size=48
+default-timeout=10000
+width=275
+outer-margin=0
+margin=8
+padding=4, 4
+anchor=top-right
