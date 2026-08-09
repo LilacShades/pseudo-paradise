@@ -1,1 +1,2 @@
-WARNING: this repo has some hard coded stuff in it, you need to change parts of the configs to get it working on your machine
+<img width="1920" height="1080" alt="image" src="screenshot.png" />
+Dotfiles for my personal CachyOS + MangoWM setup, using a modded version of the [Paradise](https://github.com/paradise-theme/paradise) colorscheme
