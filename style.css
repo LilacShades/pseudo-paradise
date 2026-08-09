@@ -1,0 +1,316 @@
+/*
+                                                   
+,--.   ,--.                 ,--.                   
+|  |   |  | ,--,--.,--. ,--.|  |-.  ,--,--.,--.--. 
+|  |.'.|  |' ,-.  | \  '  / | .-. '' ,-.  ||  .--' 
+|   ,'.   |\ '-'  |  \   '  | `-' |\ '-'  ||  |    
+'--'   '--' `--`--'.-'  /    `---'  `--`--'`--'    
+ ,---.   ,--.      `---',--.                       
+'   .-',-'  '-.,--. ,--.|  | ,---.                 
+`.  `-.'-.  .-' \  '  / |  || .-. :                
+.-'    | |  |    \   '  |  |\   --.                
+`-----'  `--'  .-'  /   `--' `----'                
+               `---'                               
+*/
+
+/* Keyframes */
+
+@keyframes blink-critical {
+	to {
+		/*color: @white;*/
+		background-color: @critical;
+	}
+}
+
+/* Import Colors */
+@import "/home/lilac/Documents/Colorschemes/css/pseudoparadise.css";
+
+/* Reset all styles */
+* {
+	border: none;
+	border-radius: 0;
+	min-height: 0;
+	margin: 0;
+	padding: 0;
+	box-shadow: none;
+	text-shadow: none;
+	icon-shadow: none;
+}
+
+/* The whole bar */
+#waybar {
+	background: @bg;
+	color: @white;
+	font-family: Terminus;
+	font-size: 9pt;
+	font-weight: Normal;
+	border-bottom: 0px solid @gray;
+	box-shadow: 0px -5px 0px 0px @bg;
+	}
+
+/* Each module */
+#battery,
+
+#language {
+	background: @fg;
+	color: @white;
+	border-radius: 0px;
+	border: 1px solid @gray;
+	padding-left: 4pt;
+	padding-right: 3pt;
+	padding-top: 3pt;
+	padding-bottom:2.5pt;
+  margin-left: 6.5pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	}
+
+#cpu,
+#mode,
+
+/* Each critical module */
+#mode,
+#memory.critical,
+#cpu.critical,
+#temperature.critical,
+#battery.crtical.discharging {
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-name: blink-critical;
+	animation-duration: 1s;
+}
+
+/* Each warning */
+#network.disconnected,
+#memory.warning,
+#cpu.warning,
+#temperature.warning,
+#battery.warning.discharging {
+	color: @warning;
+}
+
+/* And now modules themselves in their respective order */
+
+/* Current sway mode (resize etc) */
+#mode {
+	color: @white;
+	background: @mode;
+}
+
+/* Workspaces stuff */
+#workspaces {
+	background: @fg;
+	color: @white;
+	border-radius: 0px;
+	border: 1px solid @gray;
+	padding-top: 3pt;
+	padding-bottom:2.5pt;
+  padding-left: 1pt;
+  padding-right: 1pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+}
+
+#disk {
+	background: @fg;
+	color: @white;
+	border-radius: 0px;
+	border: 1px solid @gray;
+	padding-left: 4pt;
+	padding-right: 3pt;
+	padding-top: 3pt;
+	padding-bottom:2.5pt;
+	margin-right: 6pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+}
+
+#workspaces button {
+	padding-left: 2.75pt;
+	padding-right: 2.75pt
+}
+
+/* Active (on focused output) */
+#workspaces button.active {
+	color: @green;
+}
+
+/* Contains an urgent window */
+#workspaces button.urgent {
+	color: @warning;
+}
+
+/* Style when cursor is on the button */
+#workspaces button:hover {
+	color: @braccent;
+	background: @fg;
+}
+
+#workspaces:hover {
+	border: 1px solid @braccent;
+}
+/* #clocks { */
+
+#clocks {
+	background: @fg;
+	color: @white;
+	border-radius: 0px;
+	border: 1px solid @gray;
+		margin-left: 6.5pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	}
+
+#clocks:hover{
+	border: 1px solid @braccent;
+	/* background: @fgc */
+}
+#custom-clockicon {
+	background: @fgb;
+	color: @blue;
+	border-right: 1px solid @gray;
+	padding-left: 4pt;
+	padding-right: 3pt;
+	padding-top: 3pt;
+	padding-bottom:2.5pt;
+	}
+
+#clock {
+	padding-left: 4pt;
+	padding-right: 3pt;
+	padding-top: 3pt;
+	padding-bottom:2.5pt;
+}
+
+#music {
+	background: @fg;
+	color: @white;
+	border-radius: 0px;
+	border: 1px solid @gray;
+		margin-left: 6.5pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+}
+#music:hover{
+	border: 1px solid @braccent;
+	/* background: @fgc */
+}
+#custom-musicicon {
+	background: @fgb;
+	color: @cyan;
+	border-right: 1px solid @gray;
+	padding-left: 4pt;
+	padding-right: 3pt;
+	padding-top: 3pt;
+	padding-bottom:2.5pt;
+	}
+
+#mpris {
+	padding-left: 4pt;
+	padding-right: 3pt;
+	padding-top: 3pt;
+	padding-bottom:2.5pt;
+}
+
+#image {
+  border-left: 1px solid @gray;
+  background: @fgb
+}
+
+#aur {
+	background: @fg;
+	color: @white;
+	border-radius: 0px;
+	border: 1px solid @gray;
+	margin-right: 6.5pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+}
+#aur:hover{
+	border: 1px solid @braccent;
+	/* background: @fgc */
+}
+#custom-auricon {
+	background: @fgb;
+	color: @yellow;
+	border-right: 1px solid @gray;
+	padding-left: 4pt;
+	padding-right: 3pt;
+	padding-top: 3pt;
+	padding-bottom:2.5pt;
+	}
+
+#custom-updates {
+	padding-left: 4pt;
+	padding-right: 3pt;
+	padding-top: 3pt;
+	padding-bottom:2.5pt;
+}
+
+#net {
+	background: @fg;
+	color: @white;
+	border-radius: 0px;
+	border: 1px solid @gray;
+	margin-right: 6.5pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+}
+#net:hover{
+	border: 1px solid @braccent;
+	/* background: @fgc */
+}
+#custom-neticon {
+	background: @fgb;
+	color: @red;
+	border-right: 1px solid @gray;
+	padding-left: 4pt;
+	padding-right: 3pt;
+	padding-top: 3pt;
+	padding-bottom:2.5pt;
+	}
+
+#network {
+	padding-left: 4pt;
+	padding-right: 3pt;
+	padding-top: 3pt;
+	padding-bottom:2.5pt;
+}
+
+#audio {
+	background: @fg;
+	color: @white;
+	border-radius: 0px;
+	border: 1px solid @gray;
+	margin-right: 6.5pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+}
+#audio:hover{
+	border: 1px solid @braccent;
+	/* background: @fgc */
+}
+#custom-audioicon {
+	background: @fgb;
+	color: @purple;
+	border-right: 1px solid @gray;
+	padding-left: 4pt;
+	padding-right: 3pt;
+	padding-top: 3pt;
+	padding-bottom:2.5pt;
+	}
+
+#wireplumber {
+	padding-left: 4pt;
+	padding-right: 3pt;
+	padding-top: 3pt;
+	padding-bottom:2.5pt;
+}
+
+
+
+tooltip {
+  border: 1px solid @gray;
+  background: @fg;
+}

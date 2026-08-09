@@ -1,0 +1,285 @@
+//                                                    
+// ,--.   ,--.                 ,--.                   
+// |  |   |  | ,--,--.,--. ,--.|  |-.  ,--,--.,--.--. 
+// |  |.'.|  |' ,-.  | \  '  / | .-. '' ,-.  ||  .--' 
+// |   ,'.   |\ '-'  |  \   '  | `-' |\ '-'  ||  |    
+// '--'   '--' `--`--'.-'  /    `---'  `--`--'`--'    
+//  ,-----.           `---',---.,--.                  
+// '  .--./ ,---. ,--,--, /  .-'`--' ,---.            
+// |  |    | .-. ||      \|  `-,,--.| .-. |           
+// '  '--'\' '-' '|  ||  ||  .-'|  |' '-' '           
+//  `-----' `---' `--''--'`--'  `--'.`-  /            
+//                                  `---'             
+
+
+{
+	"layer": "top",
+	"position": "top",
+
+	"modules-left": [
+		"group/clocks",
+    		"group/music"
+	],
+
+	"modules-center": [
+		"mango/workspaces"
+	],
+
+	"modules-right": [
+		"group/aur",
+    		"group/net",
+		"group/audio"
+	],
+
+	// Modules
+
+	"bluetooth": {
+		"format": "<span color=\"#D9BC8C\"></span> Bluetooth",
+		"on-click": "blueman-manager"
+		},
+
+	"battery": {
+		"interval": 10,
+		"states": {
+			"warning": 30,
+			"critical": 15
+		},
+		"format-time": "{H}:{M:02}",
+		"format": "{icon} {capacity}% ({time})",
+		"format-charging": " {capacity}% ({time})",
+		"format-charging-full": " {capacity}%",
+		"format-full": "{icon} {capacity}%",
+		"format-alt": "{icon} {power}W",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		],
+		"tooltip": false
+	},
+
+	"clock": {
+		"interval": 1,
+		"format": "{:%b %d, %T}",
+		"tooltip": true,
+		"tooltip-format": "{calendar}"
+	},
+
+	"cpu": {
+		"interval": 5,
+		"tooltip": false,
+		"format": " {usage}%",
+		"format-alt": " {load}",
+		"states": {
+			"warning": 70,
+			"critical": 90
+		}
+	},
+
+	"mango/language": {
+		"format": "{}",
+		"min-length": 5,
+		"on-click": "hyprlandmsg 'input * xkb_switch_layout next'",
+		"tooltip": false
+	},
+
+	"memory": {
+		"interval": 5,
+		"format": " {used:0.1f}G/{total:0.1f}G",
+		"states": {
+			"warning": 70,
+			"critical": 90
+		},
+		"tooltip": false
+	},
+
+	"network": {
+		"interval": 5,
+		"format-wifi": "{bandwidthDownBits} ({signalStrength}%)",
+		"format-ethernet": "{ifname}",
+		"format-disconnected": "DISCONNECTED",
+		"tooltip": false,
+		"on-click": "alacritty --class nmtui --title NetworkSettings -e nmtui",
+    "on-click-right": "rofi-bluetooth",
+
+	},
+
+	"mango/mode": {
+		"format": "{}",
+		"tooltip": false
+	},
+
+	"mango/window": {
+		"format": "{}",
+		"max-length": 30,
+		"tooltip": false
+	},
+
+	"mango/workspaces": {
+		"disable-scroll-wraparound": true,
+		"smooth-scrolling-threshold": 4,
+		"hide-empty": true,
+		"on-click": "activate",
+		"enable-bar-scroll": true
+	},
+
+	"wireplumber": {
+		"format": "{volume}%",
+		"format-muted": "MUTE",
+		"scroll-step": 5,
+		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+		"on-click-right": "pavucontrol",
+		"tooltip": false
+	},
+
+	"temperature": {
+		"critical-threshold": 90,
+		"interval": 5,
+		"format": "{icon} {temperatureC}°",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		],
+		"tooltip": false
+	},
+
+	"tray": {
+		"icon-size": 18
+		//"spacing": 10
+	},
+
+	"mpris": {
+		"interval": 1,
+		"format": "{dynamic} {position}/{length}",
+		"format-paused": "{dynamic}",
+		"tooltip-format": "{dynamic}",
+		"dynamic-len": 50,
+		"dynamic-order": ["artist", "title"],
+		"tooltip": false,
+                "status-icons": {
+                     "paused": "PAUSED"
+		}
+	},
+	"disk": {
+		"format": "<span color=\"#D9BC8C\">SSD</span> {specific_free:0.2f}G",
+		"unit": "GiB"
+	},
+	"custom/controlcenter-icon": {
+		"format": "",
+		"on-click": "swaync-client -t -sw"
+	},
+	"image": {
+		"exec": "~/.config/waybar/scripts/albumcover.sh",
+		"size": 20,
+		"interval": 1,
+    "on-click": "imv -i albumcoverview -W 500 -H 500 /tmp/cover.jpg"
+	},
+	"custom/updates": {
+    "format": "{}",
+    "return-type": "json",
+    "format-icons": {
+        "has-updates": "󱍷",
+        "updated": "󰂪"
+    },
+    "on-click": "alacritty --class updater --title Updater -e cachy-update",
+    "exec-if": "which waybar-module-pacman-updates",
+    "exec": "waybar-module-pacman-updates --interval-seconds 5 --network-interval-seconds 300",
+		"tooltip": false
+	},
+    "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+
+	"group/clocks": {
+		"orientation": "horizontal",
+		"modules": [
+			"custom/clockicon",
+			"clock"
+		]
+	},
+	"group/music": {
+		"orientation": "horizontal",
+		"modules": [
+			"custom/musicicon",
+			"mpris",
+      "image"
+		]
+	},
+	"group/aur": {
+		"orientation": "horizontal",
+		"modules": [
+			"custom/auricon",
+			"custom/updates"
+		]
+	},
+	"group/net": {
+		"orientation": "horizontal",
+		"modules": [
+			"custom/neticon",
+			"network"
+		]
+	},
+	"group/audio": {
+		"orientation": "horizontal",
+		"modules": [
+			"custom/audioicon",
+			"wireplumber"
+		]
+	},
+
+
+"custom/clockicon": {
+		"format": "TIME",
+		"tooltip": false
+	},
+"custom/musicicon": {
+		"format": "FLAC",
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "on-click-middle": "playerctl previous",
+		"tooltip": false
+	},
+"custom/auricon": {
+		"format": "PKG",
+ 		"on-click": "alacritty --class updater --title Updater -e cachy-update",
+		"tooltip": false
+	},
+"custom/neticon": {
+		"format": "NET",
+		"on-click": "alacritty --class nmtui --title NetworkSettings -e nmtui",
+    "on-click-right": "rofi-bluetooth",
+    "tooltip": false
+	},
+"custom/audioicon": {
+		"format": "VOL",
+		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+		"on-click-right": "pavucontrol",
+    "on-scroll-up": "amixer -D pulse sset Master 5%+",
+    "on-scroll-down": "amixer -D pulse sset Master 5%-",
+		"tooltip": false
+	}
+}
+
+// vi:ft=jsonc
